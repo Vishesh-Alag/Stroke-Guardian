@@ -1,0 +1,3 @@
+web:
+  - command: python workingcode.py
+  - port: 8080
