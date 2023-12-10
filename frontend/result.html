@@ -519,9 +519,10 @@
 
         // Function to get findings based on Smoking Status
         function getSmokingFindings(smokingStatus) {
-            return smokingStatus == 0 ?
-                'You have a history of smoking. Smoking can have detrimental effects on health. Consider seeking support to quit.' :
-                'No history of smoking detected. Continue with a smoke-free lifestyle for better health.';
+            return smokingStatus == 1 ?
+            'No history of smoking detected. Continue with a smoke-free lifestyle for better health.' :
+               
+            'You have a history of smoking. Smoking can have detrimental effects on health. Consider seeking support to quit.';
         }
 
         // Function to generate recommendations
