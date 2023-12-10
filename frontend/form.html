@@ -462,10 +462,13 @@
                         class="mt-1 p-2 border w-full rounded">
                 </div>
                 <!-- Predict Button -->
-                <button id="predictBtn"
-                    class="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
-                    Predict
-                </button>
+                <!-- Predict Button with Loader -->
+        <button id="predictBtn" class="mt-6 bg-blue-500 text-white p-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 relative">
+            <span id="predictButtonText">Predict</span>
+            <div id="predictLoader" class="hidden absolute inset-0 flex items-center justify-center">
+                <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-blue-500"></div>
+            </div>
+        </button>
             </form>
         </div>
     </div>
@@ -529,6 +532,10 @@
     // Handle form submission and prediction on Predict button click
     document.getElementById('predictBtn').addEventListener('click', function (e) {
         e.preventDefault();
+        // Show loader and hide button text
+    document.getElementById('predictButtonText').style.display = 'none';
+    document.getElementById('predictLoader').classList.remove('hidden');
+
         const dob = document.getElementById('dob').value;
         const height = parseFloat(document.getElementById('height').value);
         const weight = parseFloat(document.getElementById('weight').value);
@@ -572,6 +579,9 @@
                // Store prediction data and formData in localStorage
         localStorage.setItem('predictionData', JSON.stringify(data));
         localStorage.setItem('formData', JSON.stringify(formData));
+        // After the API request is complete, hide the loader and show button text
+    document.getElementById('predictButtonText').style.display = 'block';
+    document.getElementById('predictLoader').classList.add('hidden');
   // Redirect to result.html
                 window.location.href = 'result.html';
             })
