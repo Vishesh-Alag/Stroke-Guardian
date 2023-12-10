@@ -1,0 +1,128 @@
+ /* Body */
+ body {
+    background-color: #E9FFFE;
+    /* Light background color */
+    color: #333;
+}
+
+/* Headers */
+header,
+.navbar,
+.cta {
+    background-color: #A3E8E5;
+    /* Light background color for headers */
+    color: #333;
+}
+
+/* Footer Section */
+.footer {
+    background-color: #333;
+    /* Dark background color for footer */
+    color: #fff;
+}
+
+/* Hero Section */
+.hero {
+    background: url('https://example.com/background-image.jpg') center/cover;
+    color: #333;
+    text-align: center;
+    padding: 100px 0;
+}
+
+/* Call to Action Section */
+.cta {
+    padding: 60px 0;
+}
+
+.cta-button {
+    font-size: 18px;
+    background-color: #A3E8E5;
+    /* Light background color for buttons */
+    color: #333;
+    /* Text color for buttons */
+    padding: 12px 24px;
+    /* Padding added for buttons */
+    border-radius: 999px;
+    /* Rounded button shape */
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transition on hover */
+}
+
+.cta-button:hover {
+    background-color: #333;
+    /* Dark background color on hover */
+    color: #E9FFFE;
+    /* Light text color on hover */
+}
+
+#mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 50%;
+    /* Adjust the width based on content */
+    max-width: 90%;
+    /* Increase the maximum width */
+    height: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transition: right 0.3s ease-in-out;
+    /* Add transition for smoother animation */
+}
+
+#mobile-menu.show {
+    right: 0;
+}
+
+#mobile-menu ul {
+    padding: 20px;
+    transition: opacity 0.3s ease-in-out;
+    /* Add opacity transition within the side menu */
+}
+
+#mobile-menu a {
+    display: block;
+    padding: 10px 0;
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    /* Add color transition for menu links */
+}
+
+#mobile-menu a:hover {
+    color: #007BFF;
+}
+
+#close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    /* Add transition for the cross icon */
+}
+
+/* Animation for hamburger icon */
+#mobile-menu-button {
+    transition: transform 0.3s ease-in-out;
+    /* Add transition for smoother animation */
+}
+
+#mobile-menu-button.active {
+    transform: rotate(180deg);
+    /* Rotate the icon when menu is active */
+}
+
+/* Animation class */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s, transform 1s;
+}
+
+.animate-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
+}

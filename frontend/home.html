@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Predicting Brain Strokes with Machine Learning. Your journey to better health starts here.">
+    <title>Stroke Guardian</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+        rel="stylesheet">
+    <!-- Add Tailwind CSS CDN link -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"
+        rel="stylesheet">
+    <!-- Add Bootstrap CSS CDN link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+    <!-- Add FontAwesome CSS link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        rel="stylesheet">
+
+    <!-- Add Bootstrap JS CDN links (Popper.js and Bootstrap JavaScript) -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/js/bootstrap.min.js"></script>
+    <!-- Custom CSS -->
+    <style>
+
+        /* Body */
+        body {
+            background-color: #E9FFFE;
+            /* Light background color */
+            color: #333;
+        }
+
+        /* Headers */
+        header,
+        .navbar,
+        .cta {
+            background-color: #A3E8E5;
+            /* Light background color for headers */
+            color: #333;
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: #333;
+            /* Dark background color for footer */
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://example.com/background-image.jpg') center/cover;
+            color: #333;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        /* Call to Action Section */
+        .cta {
+            padding: 60px 0;
+        }
+
+        .cta-button {
+            font-size: 18px;
+            background-color: #A3E8E5;
+            /* Light background color for buttons */
+            color: #333;
+            /* Text color for buttons */
+            padding: 12px 24px;
+            /* Padding added for buttons */
+            border-radius: 999px;
+            /* Rounded button shape */
+            transition: background-color 0.3s, color 0.3s;
+            /* Smooth transition on hover */
+        }
+
+        .cta-button:hover {
+            background-color: #333;
+            /* Dark background color on hover */
+            color: #E9FFFE;
+            /* Light text color on hover */
+        }
+
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 50%;
+            /* Adjust the width based on content */
+            max-width: 90%;
+            /* Increase the maximum width */
+            height: 100%;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: right 0.3s ease-in-out;
+            /* Add transition for smoother animation */
+        }
+
+        #mobile-menu.show {
+            right: 0;
+        }
+
+        #mobile-menu ul {
+            padding: 20px;
+            transition: opacity 0.3s ease-in-out;
+            /* Add opacity transition within the side menu */
+        }
+
+        #mobile-menu a {
+            display: block;
+            padding: 10px 0;
+            color: #333;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+            /* Add color transition for menu links */
+        }
+
+        #mobile-menu a:hover {
+            color: #007BFF;
+        }
+
+        #close-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            /* Add transition for the cross icon */
+        }
+
+        /* Animation for hamburger icon */
+        #mobile-menu-button {
+            transition: transform 0.3s ease-in-out;
+            /* Add transition for smoother animation */
+        }
+
+        #mobile-menu-button.active {
+            transform: rotate(180deg);
+            /* Rotate the icon when menu is active */
+        }
+
+        /* Animation class */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+        }
+
+        .animate-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a class="text-4xl font-bold"
+                href="home.html">Stroke Guardian</a>
+            <div class="sm:hidden">
+                <button id="mobile-menu-button"
+                    class="p-2 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <ul class="hidden sm:flex space-x-6 md:space-x-6">
+                <li>
+                    <a href="home.html">
+                        <i class="fas fa-home mr-2"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="aboutus.html">
+                        <i class="fas fa-info-circle mr-2"></i> About Us
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="login.html">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Login
+                    </a>
+                </li>
+                <li>
+                    <a href="signup.html">
+                        <i class="fas fa-user-plus mr-2"></i> Signup
+                    </a>
+                </li> -->
+            </ul>
+
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu">
+        <div id="close-icon"
+            onclick="closeMobileMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                class="w-6 h-6">
+                <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </div>
+        <ul class="text-gray-600 space-y-2">
+            <li>
+                <a href="home.html"
+                    class="block p-4 hover:text-blue-600">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+            </li>
+            <li class="mt-0">
+                <a href="aboutus.html"
+                    class="block p-4 hover:text-blue-600">
+                    <i class="fas fa-info-circle mr-2"></i> About Us
+                </a>
+            </li>
+            <!-- <li class="mt-0">
+                <a href="login.html"
+                    class="block p-4 hover:text-blue-600">
+                    <i class="fas fa-sign-in-alt mr-2"></i> Login
+                </a>
+            </li>
+            <li class="mt-0">
+                <a href="signup.html"
+                    class="block p-4 hover:text-blue-600">
+                    <i class="fas fa-user-plus mr-2"></i> Signup
+                </a>
+            </li> -->
+        </ul>
+
+    </div>
+
+    <!-- JavaScript to toggle mobile menu -->
+    <script>
+        function openMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.add('show');
+            // Add the 'active' class to the hamburger icon for animation
+            document.getElementById('mobile-menu-button').classList.add('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.remove('show');
+            // Remove the 'active' class from the hamburger icon
+            document.getElementById('mobile-menu-button').classList.remove('active');
+        }
+
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            if (document.getElementById('mobile-menu').classList.contains('show')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    </script>
+    <!-- Hero Section -->
+    <section id="hero"
+        class="hero animate-on-scroll">
+        <div class="container mx-auto">
+            <div class="max-w-lg mx-auto text-center">
+                <h1 class="text-4xl font-bold">Predicting Brain Strokes with Machine Learning</h1>
+                <p class="mt-4 text-lg"
+                    style="margin-bottom: 12px;">Your journey to better health starts here.</p>
+                <a href="form.html"
+                    class="mt-6 bg-blue-600 text-white py-2 px-6 rounded-full text-lg hover:bg-gray-900 transform hover:scale-105 transition duration-300">Get
+                    Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about-section"
+        class="py-0  animate-on-scroll">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
+                <div class="ml-5">
+                    <h2 class="text-3xl font-bold">About Our Project</h2>
+                    <p class=" text-lg">
+                        We are dedicated to using cutting-edge machine learning technology to predict the risk of brain
+                        strokes in individuals. Our mission is to provide accurate assessments and valuable insights to
+                        improve healthcare outcomes.
+                    </p>
+                </div>
+                <div>
+                    <img src="./assets/img/brain.png"
+                        alt="About Your Project"
+                        class="w-full" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Testimonials Section -->
+    <section class="py-12 animate-on-scroll">
+        <div class="container mx-auto">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl font-bold text-center">User Testimonials</h2>
+
+                <!-- Testimonial Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"I used this website, and it accurately predicted my stroke risk. The
+                            recommendations were invaluable!"</p>
+                        <p class="mt-4 text-gray-600">- John Doe</p>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"The user-friendly interface made it easy to get my stroke risk assessment.
+                            Great job!"</p>
+                        <p class="mt-4 text-gray-600">- Jane Smith</p>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"I highly recommend this website to anyone concerned about their health. It's
+                            a game-changer."</p>
+                        <p class="mt-4 text-gray-600">- Alice Johnson</p>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"This service helped me take control of my health. I'm grateful for the
+                            accurate predictions."</p>
+                        <p class="mt-4 text-gray-600">- Mark Wilson</p>
+                    </div>
+
+                    <!-- Testimonial 5 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"I was impressed by the speed and accuracy of the stroke risk assessment.
+                            It's a valuable tool."</p>
+                        <p class="mt-4 text-gray-600">- Sarah Davis</p>
+                    </div>
+
+                    <!-- Testimonial 6 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"Stroke Guardian has made it convenient to monitor my health. It's a must-try
+                            for everyone."</p>
+                        <p class="mt-4 text-gray-600">- Michael Brown</p>
+                    </div>
+
+                    <!-- Testimonial 7 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"I appreciate the detailed recommendations. They've helped me make positive
+                            lifestyle changes."</p>
+                        <p class="mt-4 text-gray-600">- Emily Johnson</p>
+                    </div>
+
+                    <!-- Testimonial 8 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"Stroke Guardian is a valuable tool for healthcare management. It's easy to
+                            use and provides actionable insights."</p>
+                        <p class="mt-4 text-gray-600">- David Smith</p>
+                    </div>
+
+                    <!-- Testimonial 9 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"I've been using Stroke Guardian for months, and it has helped me stay on top
+                            of my health goals."</p>
+                        <p class="mt-4 text-gray-600">- Lisa Anderson</p>
+                    </div>
+
+                    <!-- Testimonial 10 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"The accuracy of the stroke risk assessment is impressive. It's a reliable
+                            tool for health monitoring."</p>
+                        <p class="mt-4 text-gray-600">- Michael Smith</p>
+                    </div>
+
+                    <!-- Testimonial 11 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"Stroke Guardian provides a user-friendly experience. I highly recommend it
+                            to my friends and family."</p>
+                        <p class="mt-4 text-gray-600">- Sarah Johnson</p>
+                    </div>
+
+                    <!-- Testimonial 12 -->
+                    <div class="bg-gray-100 rounded-lg p-4 shadow-md">
+                        <p class="text-lg">"I'm impressed by the valuable insights Stroke Guardian offers. It's a
+                            game-changer in healthcare."</p>
+                        <p class="mt-4 text-gray-600">- Kevin Wilson</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Statistics and Analytics Section -->
+    <section class="py-12  animate-on-scroll">
+        <div class="container mx-auto">
+            <div class="max-w-lg mx-auto text-center">
+                <h2 class="text-3xl font-bold">Statistics and Analytics</h2>
+                <p class="mt-4 text-lg">
+                    We've assessed <strong>10,000+ individuals</strong> and successfully predicted stroke risks in
+                    <strong>85% of cases</strong>. Our data-driven approach ensures accurate and personalized
+                    recommendations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-12 animate-on-scroll">
+        <div class="container mx-auto">
+            <div class="max-w-lg mx-auto text-center">
+                <h2 class="text-3xl font-bold">How It Works</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    <div>
+                        <h4 class="text-xl font-semibold">1. Read FAQ's</h4>
+                        <p class="mt-2 text-lg">For Better Understanding.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold">2. Take the Assessment</h4>
+                        <p class="mt-2 text-lg">Answer a series of questions to assess your stroke risk.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold">3. Get Recommendations</h4>
+                        <p class="mt-2 text-lg">Receive personalized recommendations based on your assessment results.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id=""
+        class="cta py-12 bg-blue-600 text-white animate-on-scroll">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold">Ready to Get Started?</h2>
+            <p class="mt-4 text-lg"
+                style="margin-bottom: 12px;">Your journey to better health starts here.
+            </p>
+            <a href="form.html"
+                class="mt-6 bg-white text-blue-600 py-2 px-6 rounded-full text-lg hover:bg-gray-900 hover:text-white transform hover:scale-105 transition duration-300">Get Started
+            </a>
+        </div>
+    </section>
+
+
+    <!-- Footer Section -->
+
+    <footer class="bg-gray-900 text-white py-4">
+        <div class="container mx-auto flex flex-wrap justify-center items-center"> <!-- Center the content -->
+            <div class="w-full md:w-1/3 lg:w-1/4 px-1 mb-4">
+                <h2 class="text-xl font-semibold mb-4">About</h2>
+                <ul>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/3 lg:w-1/4 px-1 mb-4">
+                <h2 class="text-xl font-semibold mb-4">Quick Links</h2>
+                <ul>
+                    <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="termsconditions.html">Terms and Conditions</a></li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/3 lg:w-1/4 px-1 mb-4">
+                <h2 class="text-xl font-semibold mb-4">Contact</h2>
+                <div class="flex space-x-4">
+                    <a href="#"
+                        class="text-white hover:text-gray-400">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#"
+                        class="text-white hover:text-gray-400">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#"
+                        class="text-white hover:text-gray-400">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#"
+                        class="text-white hover:text-gray-400">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#"
+                        class="text-white hover:text-gray-400">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Divider -->
+        <div class="w-full mt-4"
+            style="height: 1px; background-color: rgba(255, 255, 255, 0.5);"></div>
+        <div class="text-center mt-4">
+            <p>&copy; 2023 Stroke Guardian, All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Intersection Observer Script -->
+    <script>
+        // Function to handle the animations
+        function handleIntersection(entries, observer) {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                } else {
+                    entry.target.classList.remove("active");
+                }
+            });
+        }
+
+        // Create an Intersection Observer
+        const observer = new IntersectionObserver(handleIntersection, {
+            root: null, // Use the viewport as the root
+            threshold: 0.3, // Trigger the animation when 20% of the element is in the viewport
+        });
+
+        // Add elements to observe for animations
+        const animatedElements = document.querySelectorAll(".animate-on-scroll");
+
+        animatedElements.forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+
+</html>

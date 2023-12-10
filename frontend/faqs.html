@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Predicting Brain Strokes with Machine Learning. Your journey to better health starts here.">
+    <title>Stroke Guardian</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+        rel="stylesheet">
+    <!-- Add Tailwind CSS CDN link -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"
+        rel="stylesheet">
+    <!-- Add Bootstrap CSS CDN link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+    <!-- Add FontAwesome CSS link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        rel="stylesheet">
+
+    <!-- Add Bootstrap JS CDN links (Popper.js and Bootstrap JavaScript) -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/js/bootstrap.min.js"></script>
+    <!-- Custom CSS -->
+    <style>
+        /* Your custom styles here */
+
+        /* Body */
+        body {
+            background-color: #E9FFFE;
+            /* Light background color */
+            color: #333;
+        }
+
+        /* Headers */
+        header,
+        .navbar,
+        .cta {
+            background-color: #A3E8E5;
+            /* Light background color for headers */
+            color: #333;
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: #333;
+            /* Dark background color for footer */
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://example.com/background-image.jpg') center/cover;
+            color: #333;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        /* Call to Action Section */
+        .cta {
+            padding: 60px 0;
+        }
+
+        .cta-button {
+            font-size: 18px;
+            background-color: #A3E8E5;
+            /* Light background color for buttons */
+            color: #333;
+            /* Text color for buttons */
+            padding: 12px 24px;
+            /* Padding added for buttons */
+            border-radius: 999px;
+            /* Rounded button shape */
+            transition: background-color 0.3s, color 0.3s;
+            /* Smooth transition on hover */
+        }
+
+        .cta-button:hover {
+            background-color: #333;
+            /* Dark background color on hover */
+            color: #E9FFFE;
+            /* Light text color on hover */
+        }
+
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 50%;
+            /* Adjust the width based on content */
+            max-width: 90%;
+            /* Increase the maximum width */
+            height: 100%;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: right 0.3s ease-in-out;
+            /* Add transition for smoother animation */
+        }
+
+        #mobile-menu.show {
+            right: 0;
+        }
+
+        #mobile-menu ul {
+            padding: 20px;
+            transition: opacity 0.3s ease-in-out;
+            /* Add opacity transition within the side menu */
+        }
+
+        #mobile-menu a {
+            display: block;
+            padding: 10px 0;
+            color: #333;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+            /* Add color transition for menu links */
+        }
+
+        #mobile-menu a:hover {
+            color: #007BFF;
+        }
+
+        #close-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            /* Add transition for the cross icon */
+        }
+
+        /* Animation for hamburger icon */
+        #mobile-menu-button {
+            transition: transform 0.3s ease-in-out;
+            /* Add transition for smoother animation */
+        }
+
+        #mobile-menu-button.active {
+            transform: rotate(180deg);
+            /* Rotate the icon when menu is active */
+        }
+
+        /* Animation class */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+        }
+
+        .animate-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .faq-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .faq-item .faq-answer {
+            display: none;
+        }
+
+        .faq-item .toggle-icon {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a class="text-4xl font-bold"
+                href="home.html">Stroke Guardian</a>
+            <div class="sm:hidden">
+                <button id="mobile-menu-button"
+                    class="p-2 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <ul class="hidden sm:flex space-x-6 md:space-x-6">
+                <li>
+                    <a href="home.html">
+                        <i class="fas fa-home mr-2"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="aboutus.html">
+                        <i class="fas fa-info-circle mr-2"></i> About Us
+                    </a>
+                </li>
+               
+            </ul>
+
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu">
+        <div id="close-icon"
+            onclick="closeMobileMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                class="w-6 h-6">
+                <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </div>
+        <ul class="text-gray-600 space-y-2">
+            <li>
+                <a href="home.html"
+                    class="block p-4 hover:text-blue-600">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+            </li>
+            <li class="mt-0">
+                <a href="aboutus.html"
+                    class="block p-4 hover:text-blue-600">
+                    <i class="fas fa-info-circle mr-2"></i> About Us
+                </a>
+            </li>
+            
+        </ul>
+
+    </div>
+
+    <!-- JavaScript to toggle mobile menu -->
+    <script>
+        function openMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.add('show');
+            // Add the 'active' class to the hamburger icon for animation
+            document.getElementById('mobile-menu-button').classList.add('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.remove('show');
+            // Remove the 'active' class from the hamburger icon
+            document.getElementById('mobile-menu-button').classList.remove('active');
+        }
+
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            if (document.getElementById('mobile-menu').classList.contains('show')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    </script>
+    <!-- FAQs Section -->
+    <div class="faq-container">
+        <h1 class="text-3xl font-semibold mb-6">Frequently Asked Questions</h1>
+
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+            <h3>What is the Brain Stroke Prediction System?</h3>
+            <i class="fas fa-plus-circle toggle-icon"></i>
+            <div class="faq-answer">
+                <p>The Brain Stroke Prediction System is an educational tool that demonstrates how machine learning
+                    models can predict the risk of a brain stroke based on common health metrics.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+            <h3>How can I use the system?</h3>
+            <i class="fas fa-plus-circle toggle-icon"></i>
+            <div class="faq-answer">
+                <p>You can input your age, blood pressure, cholesterol level, and heart rate on the web-based interface.
+                    The system will then predict whether you are at "High Risk" or "Low Risk" of experiencing a brain
+                    stroke.</p>
+            </div>
+        </div>
+
+        <!-- Add 10 more FAQ items -->
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+            <h3>Is the system accurate?</h3>
+            <i class="fas fa-plus-circle toggle-icon"></i>
+            <div class="faq-answer">
+                <p>The system provides predictions based on available data and machine learning models. While it can
+                    offer valuable insights, it should not be considered a medical diagnosis. Consult a healthcare
+                    professional for medical advice.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+            <h3>How do I create an account?</h3>
+            <i class="fas fa-plus-circle toggle-icon"></i>
+            <div class="faq-answer">
+                <p>To create an account, visit the Signup page and fill out the required information. Once registered,
+                    you can log in and access the system.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item">
+            <h3>Can I trust the recommendations?</h3>
+            <i class="fas fa-plus-circle toggle-icon"></i>
+            <div class="faq-answer">
+                <p>The recommendations provided by the system are generated based on the input data and machine learning
+                    algorithms. While they can be informative, always consult with a healthcare professional for
+                    personalized guidance.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="faq-item">
+            <h3>Is my data secure?</h3>
+            <i class="fas fa-plus-circle toggle-icon"></i>
+            <div class="faq-answer">
+                <p>We take data privacy seriously. Your information is stored securely and used solely for the purpose
+                    of providing stroke risk predictions. You can review our Privacy Policy for more details.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 7 -->
+        <div class="faq-item">
+            <h3>What browsers are supported?</h3>
+            <i class="fas fa-plus-circle toggle-icon"></i>
+            <div class="faq-answer">
+                <p>The system is compatible with modern web browsers such as Chrome, Firefox, Safari, and Edge. Make
+                    sure your browser is up to date for the best experience.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 8 -->
+        <div class="faq-item">
+            <h3>Is this system free to use?</h3>
+            <i class="fas fa-plus-circle toggle-icon"></i>
+            <div class="faq-answer">
+                <p>Yes, the system is available for educational purposes and is free to use. It is not intended for
+                    commercial use or as a substitute for professional medical advice.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 9 -->
+        <div class="faq-item">
+            <h3>Can I share my results with a doctor?</h3>
+            <i class="fas fa-plus-circle toggle-icon"></i>
+            <div class="faq-answer">
+                <p>Yes, you can share your assessment results with a healthcare professional for further evaluation and
+                    discussion. It may help them better understand your health status.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 10 -->
+        <div class="faq-item">
+            <h3>How often should I use the system?</h3>
+            <i class="fas fa-plus-circle toggle-icon"></i>
+            <div class="faq-answer">
+                <p>The frequency of using the system is up to you. Some users check their stroke risk periodically,
+                    while others may use it as a one-time assessment. It's essential to prioritize regular health
+                    check-ups with a healthcare provider.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+
+    <footer class="bg-gray-900 text-white py-4">
+        <div class="container mx-auto flex flex-wrap justify-center items-center"> <!-- Center the content -->
+            <div class="w-full md:w-1/3 lg:w-1/4 px-1 mb-4">
+                <h2 class="text-xl font-semibold mb-4">About</h2>
+                <ul>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/3 lg:w-1/4 px-1 mb-4">
+                <h2 class="text-xl font-semibold mb-4">Quick Links</h2>
+                <ul>
+                    <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="termsconditions.html">Terms and Conditions</a></li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/3 lg:w-1/4 px-1 mb-4">
+                <h2 class="text-xl font-semibold mb-4">Contact</h2>
+                <div class="flex space-x-4">
+                    <a href="#"
+                        class="text-white hover:text-gray-400">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#"
+                        class="text-white hover:text-gray-400">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#"
+                        class="text-white hover:text-gray-400">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#"
+                        class="text-white hover:text-gray-400">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#"
+                        class="text-white hover:text-gray-400">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Divider -->
+        <div class="w-full mt-4"
+            style="height: 1px; background-color: rgba(255, 255, 255, 0.5);"></div>
+        <div class="text-center mt-4">
+            <p>&copy; 2023 Stroke Guardian, All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to handle the toggle for FAQ answers
+        document.querySelectorAll('.faq-item').forEach(function (faqItem) {
+            const toggleIcon = faqItem.querySelector('.toggle-icon');
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+
+            toggleIcon.addEventListener('click', function () {
+                faqItem.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
