@@ -536,7 +536,7 @@
                 generateRecommendation('Consider maintaining a balanced diet and engaging in regular physical activity to manage BMI.');
             }
 
-            if (userData.smoking_status_encoded == 1) {
+            if (userData.smoking_status_encoded != 1) {
                 generateRecommendation('Explore smoking cessation programs for assistance.');
                 generateRecommendation('If you smoke, consider seeking support to quit smoking for better health.');
                 

@@ -658,6 +658,30 @@
             });
         });
     </script>
+    <!-- JavaScript to toggle mobile menu -->
+    <script>
+        function openMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.add('show');
+            // Add the 'active' class to the hamburger icon for animation
+            document.getElementById('mobile-menu-button').classList.add('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.remove('show');
+            // Remove the 'active' class from the hamburger icon
+            document.getElementById('mobile-menu-button').classList.remove('active');
+        }
+
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            if (document.getElementById('mobile-menu').classList.contains('show')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    </script>
 </body>
 
 </html>
