@@ -1,0 +1,466 @@
+
+My project name is "StrokeGuardian" a ML Project this is a website developed using HTML,css,js and backend connected usingstack for describing MERN individually 
+using  REACT.js we create our frontend
+using Express  node we create our API that connect with mongo db over atlas
+So basically my project is a website that provides multiple tools over 75+ (Still introducing new tools daily) tools for making day to day calculation tasks easy of different categories these are the current categories and tools we provide :
+Title reffred to category name and items->label refere to Tools for that category 
+{
+            title: 'Text Manipulation Tool',
+            dropdown: 'text',
+            items: [
+              { to: '/text-manipulation/lower-to-upper', label: 'Convert Lower to Upper' },
+              { to: '/text-manipulation/upper-to-lower', label: 'Convert Upper to Lower' },
+              { to: '/text-manipulation/remove-space', label: 'Remove Space' },
+              { to: '/text-manipulation/text-count', label: 'Text Count' },
+              { to: '/text-manipulation/reverse-text', label: 'Reverse Text' },
+              { to: '/text-manipulation/replace-Words', label: 'Replace Text' },
+              { to: '/text-manipulation/text-to-speech', label: 'Text to Speech' },
+              { to: '/text-manipulation/text-encryption', label: 'Text Encryption' },
+              { to: '/text-manipulation/text-decryption', label: 'Text Decryption' },
+              { to: '/text-manipulation/morse-code', label: 'Morse Code' },
+              { to: '/text-manipulation/lorem-genrator', label: 'Lorem Generator' },
+            ],
+          },
+          {
+            title: 'Image Manipulation Tool',
+            dropdown: 'image',
+            items: [
+              { to: '/ImageManipulation/image-resize', label: 'Resize Image' },
+              { to: '/ImageManipulation/image-crop', label: 'Crop Image' },
+              { to: '/ImageManipulation/image-rotate', label: 'Rotate Image' },
+              { to: '/ImageManipulation/image-water-mark', label: 'Add Watermark' },
+              { to: '/ImageManipulation/image-filter', label: 'Apply Image Filters' },
+              { to: '/ImageManipulation/image-conversion', label: 'Image Format Conversion' },
+            ],
+          },
+          {
+            title: 'File Conversion Tool',
+            dropdown: 'file',
+            items: [
+              { to: '/FileConversionTool/excel-to-pdf', label: 'Excel to PDF' },
+              { to: '/FileConversionTool/image-to-pdf', label: 'Image to PDF' },
+              { to: '/FileConversionTool/text-to-pdf', label: 'Text to PDF' },
+              { to: '/FileConversionTool/pdf-merge', label: 'Merge PDF' },
+              { to: '/FileConversionTool/pdf-split', label: 'Split PDF' },
+            ],
+          },
+          {
+            title: 'Coding Tools',
+            dropdown: 'coding',
+            items: [
+              { to: '/CodingTool/html-formatter', label: 'HTML Formatter' },
+              { to: '/CodingTool/code-editor', label: 'HTML Viewer' },
+              { to: '/CodingTool/css-minifier', label: 'CSS Minifier' },
+              { to: '/CodingTool/js-minifier', label: 'JavaScript Minifier' },
+              { to: '/CodingTool/json-formatter', label: 'JSON Formatter' },
+              { to: '/CodingTool/sql-editor', label: 'SQL Formatter' },
+              { to: '/CodingTool/markdown-editor', label: 'Markdown Editor' },
+              { to: '/CodingTool/code-snippet', label: 'Code Snippet Generator' },
+            ],
+          },
+          {
+            title: 'Utility',
+            dropdown: 'utility',
+            items: [
+              { to: '/Utility/qr-code-genrator', label: 'QR code genrator' },
+              { to: '/Utility/bar-code-genrator', label: 'Bar code generator' },
+              { to: '/Utility/password-genrator', label: 'Password generator' },
+              { to: '/Utility/color-picker', label: 'Color Picker' },
+              { to: '/Utility/bmi-calculator', label: 'BMI Calculator' },
+              { to: '/Utility/fd-calculator', label: 'FD Calculator' },
+              { to: '/Utility/rd-calculator', label: 'RD Calculator' },
+
+            ],
+          },
+          {
+            title: 'Math & Calculator',
+            dropdown: 'calculator',
+            items: [
+              { to: '/MathCalculator/basic-calc', label: 'Basic Calculator' },
+              { to: '/MathCalculator/scientific-calculator', label: 'Scientific Calculator' },
+              { to: '/MathCalculator/unit-converter', label: 'Unit Converter' },
+              { to: '/MathCalculator/currency-converter', label: 'Currency Converter' },
+              { to: '/MathCalculator/days-calculator', label: 'Days Calculator' },
+              { to: '/MathCalculator/age-calculator', label: 'Age Calculator' },
+              { to: '/MathCalculator/time-calculator', label: 'Time Calculator' },
+            ],
+          },
+        {
+            title: 'Hashing',
+            dropdown: 'hashing',
+            items: [
+                { to: '/hashing/md5', label: 'MD5 Hash Generator' },
+                { to: '/hashing/sha-256', label: 'SHA-256 Hash Generator' },
+                { to: '/hashing/sha-512', label: 'SHA-512 Hash Generator' },
+                { to: '/hashing/base64-encode', label: 'Base64 Encode' },
+                { to: '/hashing/base64-decode', label: 'Base64 Decode' },
+                { to: '/hashing/hmac-generator', label: 'HMAC Generator' },
+                { to: '/hashing/bcrypt-generator', label: 'Bcrypt Hash Generator' },
+                { to: '/hashing/salted-hash-generator', label: 'Salted Hash Generator' },
+                { to: '/hashing/uuid-generator', label: 'UUID Generator' },
+                { to: '/hashing/random-string-generator', label: 'Random String Generator' },
+                { to: '/hashing/crc32-generator', label: 'CRC32 Generator' },
+                { to: '/hashing/ripemd160-generator', label: 'RIPEMD-160 Hash Generator' },
+            ],
+        },
+        {
+            title: "Number Base Converters",
+            items: [
+              {
+                to: "/number-base-converter/binary-to-decimal",
+                label: "Binary To Decimal Converter"
+              },
+              {
+                to: "/number-base-converter/binary-to-hex",
+                label: "Binary To Hex Converter"
+              },
+              {
+                to: "/number-base-converter/binary-to-octal",
+                label: "Binary To Octal Converter"
+              },
+              {
+                to: "/number-base-converter/decimal-to-binary",
+                label: "Decimal To Binary Converter"
+              },
+              {
+                to: "/number-base-converter/decimal-to-hex",
+                label: "Decimal To Hex Converter"
+              },
+              {
+                to: "/number-base-converter/decimal-to-octal",
+                label: "Decimal To Octal Converter"
+              },
+              {
+                to: "/number-base-converter/hex-to-binary",
+                label: "Hex To Binary Converter"
+              },
+              {
+                to: "/number-base-converter/hex-to-decimal",
+                label: "Hex To Decimal Converter"
+              },
+              {
+                to: "/number-base-converter/hex-to-octal",
+                label: "Hex To Octal Converter"
+              },
+              {
+                to: "/number-base-converter/octal-to-binary",
+                label: "Octal To Binary Converter"
+              },
+              {
+                to: "/number-base-converter/octal-to-decimal",
+                label: "Octal To Decimal Converter"
+              },
+              {
+                to: "/number-base-converter/octal-to-hex",
+                label: "Octal To Hex Converter"
+              }
+            ]
+          },
+          
+          
+        {
+            title: 'Binary Calculator',
+            dropdown: 'binary-calculator',
+            items: [
+              { to: '/binary-calculator/sum', label: 'Binary Sum Calculator' },
+              { to: '/binary-calculator/product', label: 'Binary Product Calculator' },
+              { to: '/binary-calculator/bitwise-and', label: 'Binary Bitwise AND Calculator' },
+              { to: '/binary-calculator/bitwise-nand', label: 'Binary Bitwise NAND Calculator' },
+              { to: '/binary-calculator/bitwise-or', label: 'Binary Bitwise OR Calculator' },
+              { to: '/binary-calculator/bitwise-nor', label: 'Binary Bitwise NOR Calculator' },
+              { to: '/binary-calculator/bitwise-xor', label: 'Binary Bitwise XOR Calculator' },
+              { to: '/binary-calculator/bitwise-xnor', label: 'Binary Bitwise XNOR Calculator' },
+              { to: '/binary-calculator/bitwise-not', label: 'Binary Bitwise NOT Calculator' },
+              { to: '/binary-calculator/bit-inverter', label: 'Binary Bit Inverter' },
+              { to: '/binary-calculator/bit-reverser', label: 'Binary Bit Reverser' },
+              { to: '/binary-calculator/number-rotator', label: 'Binary Number Rotator' },
+              { to: '/binary-calculator/bit-rotator', label: 'Binary Bit Rotator' },
+            ],
+          },
+        {
+            title: 'Computer Graphics',
+            dropdown: 'computer-graphics',
+            items: [
+              { to: '/computer-graphics/dda', label: 'DDA Algorithm ' },
+              { to: '/computer-graphics/bresenham-line-algorithm', label: 'Bresenham Line Algorithm ' },
+              { to: '/computer-graphics/bresenham-circle-algorithm', label: 'Bresenham Circle Algorithm ' },
+              { to: '/computer-graphics/sutherland-line-cliping-algorithm', label: 'Cohen Sutherland Line Clipping Algorithm ' },
+              { to: '/computer-graphics/cyrus-beck-line-cliping-algorithm', label: 'Cyrus Beck Line Clipping Algorithm ' },
+            ],
+          },
+
+          {
+            "title": "Operating System Algorithms",
+            "dropdown": "os-algos",
+            "items": [
+                  { "to": "/operating-system-algo/fcfs", "label": "First-Come, First-Served (FCFS)" },
+                  { "to": "/operating-system-algo/sjf", "label": "Shortest Job First (SJF)" },
+                  { "to": "/operating-system-algo/rr", "label": "Round Robin (RR)" },
+                  { "to": "/operating-system-algo/priority", "label": "Priority Scheduling" },
+                  { "to": "/operating-system-algo/fifo", "label": "First-In, First-Out (FIFO)" },
+                  { "to": "/operating-system-algo/lru", "label": "Least Recently Used (LRU)" },
+                  { "to": "/operating-system-algo/optimal", "label": "Optimal Page Replacement" },
+                ]
+              },
+so we provide above tools and still introducing new categorys and tools by our own and by also engaing user interaction we have give a "Request a Tool " option in footer of our website from where user can fill a simple form and send there request to us and it will store on mongo DB. we also provide a option for subscribe our newsletter from where we can collect the users email address and in future when new updates or new tools are introduced we mail them so they notified about the tool. along these we can create a feedback submission option for user to provide overall feedback for the website  and for every tool there is a Rating Component which user can rate the tool and provide feedback for particular tool. in every tool we show Average Rating of tool, Sharing option for social media :whatsapp,fb,linkedin to share the tool with others and along with these we also provide a "Add To Favourites" Button so user can add there tools in favourite and esily access on top of home page.
+so below are the APIs we use:
+// server.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+// const cors = require('cors');
+const app = express();
+const PORT = 5000;
+const connectToMongoDB = async () => {
+  try {
+    await mongoose.connect('mongodb+srv://toolboxpress:toolboxpress123@toolboxpress.vv4dspn.mongodb.net/', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error.message);
+  }
+};
+app.get('/', (req, res) => {
+  res.send('Hey this is my API running 🥳')
+})
+
+// Call the function to connect to MongoDB
+connectToMongoDB();
+// app.use(cors('*'));
+app.use(express.json())
+app.use(bodyParser.json());
+
+const feedbackSchema = new mongoose.Schema({
+  rating: Number,
+  feedback: String,
+  url: String,
+});
+
+const Feedback = mongoose.model('Feedback', feedbackSchema);
+
+app.post('/submit-feedback', async (req, res) => {
+  try {
+    const { rating, feedback, url } = req.body;
+    const newFeedback = new Feedback({ rating, feedback, url });
+    await newFeedback.save();
+    res.status(201).send('Feedback submitted successfully!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+app.get('/get-average-rating', async (req, res) => {
+  try {
+    const url = req.query.currentUrl;
+
+    // Get average rating and count for the given URL
+    const result = await Feedback.aggregate([
+      { $match: { url } },
+      {
+        $group: {
+          _id: null,
+          averageRating: { $avg: '$rating' },
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $project: {
+          _id: 0, // Exclude _id field from the result
+          averageRating: { $round: ['$averageRating', 1] }, // Round to 1 decimal place
+          count: 1,
+        },
+      },
+    ]);
+
+    const averageRating = result.length > 0 ? result[0].averageRating : 0;
+    const count = result.length > 0 ? result[0].count : 0;
+
+    res.status(200).json({ averageRating, count });
+  } catch (error) {
+    console.error('Error getting average rating:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+app.get('/popular-tools', async (req, res) => {
+  try {
+    const popularTools = await Feedback.aggregate([
+      {
+        $group: {
+          _id: '$url',
+          averageRating: { $avg: '$rating' },
+          feedbacks: { $push: { rating: '$rating', feedback: '$feedback' } },
+        },
+      },
+      {
+        $sort: { averageRating: -1 },
+      },
+      {
+        $limit: 3,
+      },
+      {
+        $project: {
+          _id: 0, // Exclude _id field from the result
+          url: '$_id',
+          rating: { $round: ['$averageRating', 1] }, // Round to 1 decimal place
+        },
+      },
+    ]);
+
+    res.status(200).json(popularTools);
+  } catch (error) {
+    console.error('Error getting popular tools:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+const visitorSchema = new mongoose.Schema({
+  ipAddress: String,
+});
+
+const Visitor = mongoose.model('Visitor', visitorSchema);
+
+// Middleware to track unique visitors
+app.use(async (req, res, next) => {
+  const ipAddress = req.ip || req.connection.remoteAddress;
+  const existingVisitor = await Visitor.findOne({ ipAddress });
+
+  if (!existingVisitor) {
+    await new Visitor({ ipAddress }).save();
+  }
+
+  next();
+});
+// Middleware to handle preflight requests
+app.options('/visitor-count');
+// Route to get the count of unique visitors
+app.get('/visitor-count', async (req, res) => {
+  try {
+    const count = await Visitor.countDocuments();
+    res.status(200).json({ count });
+  } catch (error) {
+    console.error('Error getting visitor count:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Create a mongoose schema
+const websiteFeedbackSchema = new mongoose.Schema({
+  overall: Number,
+  userInterface: Number,
+  toolVariety: Number,
+  easeOfUse: Number,
+  timestamp: { type: Date, default: Date.now },
+});
+
+// Create a mongoose model
+const WebsiteFeedback = mongoose.model('WebsiteFeedback', websiteFeedbackSchema);
+// Middleware to handle preflight requests
+app.options('/website-feedback');
+// API endpoint to store feedback
+app.post('/website-feedback', async (req, res) => {
+  try {
+    const { overall, userInterface, toolVariety, easeOfUse } = req.body;
+    console.log(req.body)
+    // Create a new feedback instance
+    const newWebsiteFeedback = new WebsiteFeedback({
+      overall,
+      userInterface,
+      toolVariety,
+      easeOfUse,
+    });
+
+    // Save the feedback to MongoDB
+    await newWebsiteFeedback.save();
+
+    res.status(201).json({ message: 'Feedback submitted successfully!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+// ... (existing code)
+
+const subscriptionSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true },
+});
+
+const Subscription = mongoose.model('Subscription', subscriptionSchema);
+
+// Middleware to handle preflight requests
+app.options('/subscribe');
+
+// API endpoint to store email subscriptions
+app.post('/subscribe', async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Check if the email already exists
+    const existingSubscription = await Subscription.findOne({ email });
+    if (existingSubscription) {
+      return res.json({ error: 'Email already subscribed!' });
+    }
+
+    // Create a new subscription instance
+    const newSubscription = new Subscription({ email });
+
+    // Save the subscription to MongoDB
+    await newSubscription.save();
+
+    res.status(201).json({ message: 'Subscription successful!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+//request tool
+const toolRequestSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  toolName: { type: String, required: true },
+  toolDescription: { type: String, required: true },
+  timestamp: { type: Date, default: Date.now },
+});
+const ToolRequest = mongoose.model('ToolRequest', toolRequestSchema);
+
+// Middleware to handle preflight requests
+app.options('/request-tool');
+
+// API endpoint to handle tool requests
+app.post('/request-tool', async (req, res) => {
+  try {
+    const { name, email, toolName, toolDescription } = req.body;
+
+    // Create a new tool request instance
+    const newToolRequest = new ToolRequest({
+      name,
+      email,
+      toolName,
+      toolDescription,
+    });
+
+    // Save the tool request to MongoDB
+    await newToolRequest.save();
+
+    res.status(201).json({ message: 'Tool request submitted successfully!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+for testing of our apis we use postman testing test cases and for tools we take feedbacks from user resolve issues and redeploy the tool and also we regulary find the bugs and solve them.
+
+now i think i explain my overall project, apis, database limited requirement for feedbacks,  subscriptions, visitor count, etc, now come on deployment
+
+our project is deployed on two platfroms frontend backend seprated 
+Frontedn on vercel "https://toolboxpress.vercel.app/"
+Backend on Render   "https://toolboxpress-backend.onrender.com/" 
+enable CORS and connect frontend with backend.
+we use Git for managing versions and connected between vercel and render 
+
+NOW CREATE DOCUMENTATION in CHAPTERS IN SEQUENCE, FIRST suggest me Table of content for atleast 8-9 chapters and refrences chapter also add synpsis on top after that chapter 1 introduction ,add UML diagrams chapter ,api chapter ,testing chapter., deployment chapter and all required chapter i want to create it atleast 70 pages documentation including code designs UMLs Scrrenshots 

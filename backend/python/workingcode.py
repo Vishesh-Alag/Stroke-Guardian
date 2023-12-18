@@ -185,6 +185,7 @@ print("\n", selected_feature_names, "\n")
 
 # Visualizations applicable to the training phase
 # Feature Importance Plot
+plt.figure(figsize=(15, 10))  # Adjust the figure size as needed
 feature_importance = pd.Series(model.feature_importances_, index=selected_feature_names)
 feature_importance.nlargest(10).plot(kind='barh')
 plt.title('Top 10 Important Features (Training Phase)')
