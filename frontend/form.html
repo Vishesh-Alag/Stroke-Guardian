@@ -526,56 +526,56 @@
             const height = parseFloat(document.getElementById('height').value);
             const weight = parseFloat(document.getElementById('weight').value);
 
-            const age = calculateAge(dob);
-            let bmi = 0;
-            // Check if height and weight are valid numbers
-            if (!isNaN(height) && !isNaN(weight)) {
-                bmi = calculateBMI(height, weight);
-            } else {
-                alert('Please enter valid values for height and weight.');
-                return;
-            }
-            // Fetch form data
-            const formData = {
-                age: age,
-                hypertension: document.getElementById('hypertension').value,
-                heart_disease: document.getElementById('heartDisease').value,
-                avg_glucose_level: document.getElementById('avgGlucose').value,
-                bmi: bmi,
-                gender_encoded: document.getElementById('gender').value,
-                smoking_status_encoded: document.getElementById('smokingStatus').value,
-                ever_married_encoded: document.getElementById('everMarried').value,
-                work_type_encoded: document.getElementById('workType').value,
-                Residence_type_encoded: document.getElementById('residenceType').value,
-                name: document.getElementById('userName').value,
-                email: document.getElementById('userEmail').value
-
-            };
-            //http://localhost:8080/api/v1/predict
-            //fetch('https://stroke-guardian.onrender.com/api/v1/predict'
-            fetch('https://stroke-guardian.onrender.com/api/v1/predict', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+        const age = calculateAge(dob);
+        let bmi=0;
+        // Check if height and weight are valid numbers
+        if (!isNaN(height) && !isNaN(weight)) {
+            bmi = calculateBMI(height, weight);
+        } else {
+            alert('Please enter valid values for height and weight.');
+            return;
+        }
+        // Fetch form data
+        const formData = {
+            age: age,
+            hypertension: document.getElementById('hypertension').value,
+            heart_disease: document.getElementById('heartDisease').value,
+            avg_glucose_level: document.getElementById('avgGlucose').value,
+            bmi:bmi,
+            gender_encoded: document.getElementById('gender').value,
+            smoking_status_encoded: document.getElementById('smokingStatus').value,
+            ever_married_encoded: document.getElementById('everMarried').value,
+            work_type_encoded: document.getElementById('workType').value,
+            Residence_type_encoded: document.getElementById('residenceType').value,
+            name: document.getElementById('userName').value,
+            email: document.getElementById('userEmail').value
+            
+        };
+        //fetch('https://stroke-guardian.onrender.com/api/v1/predict'
+        // Send data to the Flask API (you need to replace the API endpoint with your actual endpoint)
+        fetch('http://localhost:8080/api/v1/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then(response => response.json())
+            .then(data => {
+               // Store prediction data and formData in localStorage
+        localStorage.setItem('predictionData', JSON.stringify(data));
+        localStorage.setItem('formData', JSON.stringify(formData));
+        // After the API request is complete, hide the loader and show button text
+    document.getElementById('predictButtonText').style.display = 'block';
+    document.getElementById('predictLoader').classList.add('hidden');
+  // Redirect to result.html
+                window.location.href = 'result.html';
             })
-                .then(response => response.json())
-                .then(data => {
-                    // Store prediction data and formData in localStorage
-                    localStorage.setItem('predictionData', JSON.stringify(data));
-                    localStorage.setItem('formData', JSON.stringify(formData));
-                    // After the API request is complete, hide the loader and show button text
-                    document.getElementById('predictButtonText').style.display = 'block';
-                    document.getElementById('predictLoader').classList.add('hidden');
-                    // Redirect to result.html
-                    window.location.href = 'result.html';
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-        });
-    </script>
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+</script>
 
 
 
